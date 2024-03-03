@@ -1,0 +1,17 @@
+;<MUltiplicacao com somas sucessivas>
+
+
+	start: nop
+                        ; verifica se 0001 é 0
+    Lda 1 
+    Adi 00
+    Jz zero             ; se for 0, o codigo termina sem retornar nada
+    mvi a,00            ; caso nao for 0, limpa o valor o reg. a
+    lhld 0001           ; carrega os endereços 1 e 2 nos reg. h e l
+    dcr l               ; o numero de vezes que h será somado cai uma casa 
+    lda 2               ; h é imprimido em a, como se tivesse feito h x 1
+    loop: add h         ; soma o valor de h em a novamente
+    sta 003             ; regista o resultado no endereço 3
+    dcr l               ; diminui mais um casa do numero de vezes que h será somado
+    jnz loop            ; jump para inicio do loop loop
+    zero: hlt           ; aqui que o programa termina
